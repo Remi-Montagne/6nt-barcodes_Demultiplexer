@@ -79,11 +79,7 @@ public:
             // parse each line of the barcode file
             while (getline(flow, line))
             {
-                if (line.length() <= 1 || line == " \n")
-                {
-                    return false;
-                }
-                else
+                if (!(line.length() <= 1 || line == " \n" || line == "\n"))
                 {
                     //get the name and sequence of the barcodes
                     name = line.substr(0, 8);
@@ -407,13 +403,6 @@ int main(int argc, char *argv[])
             Demultiplexer dm(f1, f2, barcodes);
             dm.demultiplex();
         }
-
-        else
-        {
-            cerr << "ERROR: There is an empty line in the barcode files.\nPlease remove it before running the program.\n"
-                 << endl;
-        }
-
         return 0;
     }
 }
